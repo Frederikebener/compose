@@ -15,7 +15,7 @@ function extractTemplateLiteral(src, name) {
   const regex = new RegExp(`const ${name} = \`((?:[^\`\\\\]|\\\\.)*)\``, "s");
   const match = src.match(regex);
   if (!match) throw new Error(`Could not extract ${name} from composeData.ts`);
-  return match[1].replace(/\\`/g, "`");
+  return match[1].replace(/\\`/g, "`").replace(/\\\$/g, "$");
 }
 
 const COMPOSE_TEMPLATE = extractTemplateLiteral(content, "COMPOSE_TEMPLATE");
