@@ -176,6 +176,7 @@ services:
     command: [ "postgrest" ]
 
   realtime:
+    container_name: realtime-dev.supabase-realtime
     # This container name looks inconsistent but is correct because realtime constructs tenant id by parsing the subdomain
     image: supabase/realtime:v2.34.47
     restart: unless-stopped
