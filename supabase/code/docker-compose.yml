@@ -223,6 +223,11 @@ services:
       APP_NAME: realtime
       SEED_SELF_HOST: "true"
       RUN_JANITOR: "true"
+    # O EasyPanel ignora container_name; o Kong procura o Realtime por este nome (e o Realtime tira dele o tenant)
+    networks:
+      default:
+        aliases:
+          - realtime-dev.supabase-realtime
 
   # To use S3 backed storage: docker compose -f docker-compose.yml -f docker-compose.s3.yml up
   storage:
