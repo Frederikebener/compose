@@ -412,6 +412,11 @@ services:
         "-c",
         "log_min_messages=fatal" # prevents Realtime polling queries from appearing in logs
       ]
+    # Os apps do projeto (crm-rdf, worker, agendador) são serviços do EasyPanel e só
+    # enxergam a rede easypanel-n8n; sem ela o host n8n_supabase-db-1 dá ENOTFOUND neles
+    networks:
+      - default
+      - easypanel-n8n
 
   vector:
     image: timberio/vector:0.28.1-alpine
@@ -491,3 +496,7 @@ services:
 
 volumes:
   db-config:
+
+networks:
+  easypanel-n8n:
+    external: true
